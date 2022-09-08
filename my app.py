@@ -1,15 +1,36 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QHBoxLayout, QVBoxLayout, QRadioButton, QMessageBox
-def final():
-    result = QMessageBox()
-    result.setText('')
-    result.exec_()
+class FScreen(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.set_appear()
+        self.initUI()
+        self.connects()
+        self.show()
+
+    def set_appear(self):
+        self.setWindowTitle(text_title)
+        self.reisze(win_width, win_height)
+    
+    def initUI(self):
+        self.text = QLabel(text)
+        self.instruction = QLabel(text_instruction)
+        self.button = QPushButton(text_button)
+        self.VLayout = QVBoxLayout()
+        self.VLayout.addWidget(self.text)
+        self.VLayout.addWidget(self.instruction)
+        self.VLayout.addWidget(self.button)
+        self.setLayout(VLayout)
+
+    def connects(self):
+        self.button.clicked.connect(self.next_win)
+
+    def next_win(self):
+        self.hide()
+        #создать класс следующего экрана
+
+#class SScreeen(QWidget):
+
 app = QApplication([])
-my_win = QWidget()
-my_win.setWindowTitle('Тест Руфье')
-main_text = QLabel('Тест Руфье')
-main_line = QVBoxLayout()
-main_line.addWidget(main_text, alignment = Qt.AlignLeft)
-my_win.setLayout(main_line)
-my_win.show()
+mw = FScreen()
 app.exec_()
